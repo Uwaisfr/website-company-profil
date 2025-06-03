@@ -1,0 +1,568 @@
+/* --- Variabel Warna --- */
+:root {
+    --primary-color: #4CAF50; /* Hijau Beras - Warna utama untuk tombol, judul */
+    --secondary-color: #66BB6A; /* Hijau Muda - Warna aksen untuk hover */
+    --text-color: #333; /* Hitam keabu-abuan untuk teks umum */
+    --light-bg: #f8f8f8; /* Background section yang terang */
+    --white: #ffffff; /* Putih bersih */
+    --transparent-dark: rgba(0, 0, 0, 0.4); /* Hitam transparan untuk overlay hero */
+    --accent-color: #FFC107; /* Kuning Keemasan - Untuk harga atau aksen khusus Mutiara 77 */
+    --border-color: #e0e0e0; /* Warna border ringan */
+    --dark-footer: #212121; /* Warna gelap untuk footer */
+}
+
+/* --- Font Import (Montserrat & Playfair Display) --- */
+@import url('https://www.google.com/maps/place/Pabrik+Beras+UD+Gunung+Arto/@-7.6817165,112.1328825,17z/data=!3m1!4b1!4m6!3m5!1s0x2e7845b60ee95027:0x31801f4dc081802b!8m2!3d-7.6817218!4d112.1354574!16s%2Fg%2F11frdzf3qy?entry=ttu&g_ep=EgoyMDI1MDUyOC4wIKXMDSoASAFQAw%3D%3D');
+
+/* --- Reset & Base Styling --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Padding dan border tidak menambah ukuran elemen */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif; /* Font default */
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+    /* Background global untuk body. Pastikan ini tidak menutupi hero-section */
+    /* Jika Anda ingin background hero-section saja, hapus ini */
+    /* Jika ingin background body tampil di bawah hero, gunakan properti di bawah */
+    /* background-image: url('images/hero-bg.jpg'); */ /* Hapus ini jika hanya ingin di hero-section */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    /* background-attachment: fixed; */
+    /* background-position: center center; */
+    -webkit-font-smoothing: antialiased; /* Perhalus teks di browser Webkit */
+    scroll-behavior: smooth; /* Gulir halus untuk internal link */
+    padding-top: 100px; /* **PENTING**: Memberi ruang untuk header fixed */
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px; /* Batasi lebar maksimal konten */
+    margin: 0 auto; /* Pusatkan konten */
+    padding: 20px 0;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif; /* Font untuk judul utama */
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+h1 { font-size: 3.5em; text-align: center; }
+h2 { font-size: 2.5em; text-align: center; }
+h3 { font-size: 1.8em; text-align: center; }
+
+p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: none; /* Hilangkan underline di hover, pakai efek bawah */
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white); /* Warna teks tombol */
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Tambah sedikit shadow */
+}
+
+.button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    color: var(--white); /* Pastikan warna teks tetap terlihat */
+}
+
+/* --- HEADER & NAVIGASI --- */
+header {
+    position: fixed; /* Header tetap di atas saat digulir */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0; /* Padding atas dan bawah untuk header */
+    z-index: 1000; /* Memastikan header selalu di atas elemen lain */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transisi untuk warna background dan shadow */
+}
+
+/* Transparan Header (default di index.html saat di atas) */
+/* Pastikan class ini ditambahkan/dihapus oleh JavaScript */
+.transparent-header {
+    background-color: transparent; /* Latar belakang transparan */
+}
+
+.transparent-header .logo img {
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Bayangan agar logo terlihat di background cerah */
+}
+
+.transparent-header nav ul li a {
+    color: var(--white); /* Teks menu putih */
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.5)); /* Bayangan teks menu */
+}
+.transparent-header nav ul li a:hover {
+    color: var(--secondary-color); /* Warna hover putih */
+}
+.transparent-header nav ul li a::after { /* Underline di transparent header */
+    background-color: var(--secondary-color);
+}
+
+
+/* Solid Header (ketika digulir atau di products.html) */
+/* Pastikan class ini ditambahkan/dihapus oleh JavaScript */
+.solid-header {
+    background-color: var(--white); /* Latar belakang solid putih */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Bayangan lembut di bawah header */
+}
+
+.solid-header .logo img {
+    filter: none; /* Hilangkan bayangan jika background solid */
+}
+
+.solid-header nav ul li a {
+    color: var(--primary-color); /* Teks menu kembali ke warna primary */
+    filter: none;
+}
+.solid-header nav ul li a:hover {
+    color: var(--secondary-color);
+}
+.solid-header nav ul li a::after { /* Underline di solid header */
+    background-color: var(--secondary-color);
+}
+
+
+/* Container di dalam Header - Mengatur Logo dan Navigasi */
+header .container {
+    display: flex; /* Menggunakan Flexbox */
+    justify-content: space-between; /* Logo di kiri, navigasi di kanan */
+    align-items: center; /* Pusat secara vertikal */
+}
+
+.logo img {
+    height: 60px; /* Tinggi logo */
+    max-width: 100%;
+    display: block; /* Menghilangkan spasi ekstra di bawah gambar */
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+/* Navigasi Utama */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Untuk menata item menu secara horizontal */
+}
+
+nav ul li {
+    margin-left: 35px; /* Jarak antar item menu */
+}
+
+nav ul li:first-child {
+    margin-left: 0; /* Pastikan item pertama tidak memiliki margin kiri */
+}
+
+nav ul li a {
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 5px 0;
+    position: relative; /* Untuk underline efek hover */
+    transition: color 0.3s ease; /* Transisi untuk warna teks */
+    white-space: nowrap; /* Mencegah teks menu patah baris */
+}
+
+/* Underline efek hover */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: var(--secondary-color); /* Warna underline */
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after { /* Class active untuk menandai link saat ini */
+    width: 100%;
+}
+
+/* --- MAIN SECTIONS --- */
+
+/* Hero Section (Index.html) */
+.hero-section {
+    background: url('images/hero-bg.jpg') no-repeat center center/cover;
+    position: relative;
+    height: 100vh; /* Mengisi seluruh tinggi viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero-overlay {
+    background-color: var(--transparent-dark); /* Overlay transparan pada gambar */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; /* Untuk memusatkan konten di dalam overlay */
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section .container {
+    position: relative; /* Agar konten di atas overlay */
+    z-index: 1;
+}
+
+.hero-section h1 {
+    font-size: 4.8em; /* Judul utama lebih besar */
+    margin-bottom: 10px;
+    color: var(--white);
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.8)); /* Bayangan teks agar lebih jelas */
+}
+
+.hero-section h2 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    color: var(--white);
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
+}
+
+.hero-section p {
+    font-size: 1.6em;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    color: var(--secondary-color); /* Warna teks deskripsi agak terang */
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.6));
+}
+
+/* General Section Styling */
+section {
+    padding: 100px 0; /* Padding vertikal untuk setiap section */
+    text-align: center; /* Teks default di tengah */
+}
+
+.about-section {
+    background-color: var(--white);
+}
+
+.about-section p {
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    line-height: 1.8;
+}
+
+.about-section h3 {
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--light-bg);
+    padding: 80px 0;
+}
+
+.contact-section h3 {
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.contact-info-block {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.contact-info-block:hover {
+    transform: translateY(-5px);
+}
+
+.contact-info-block p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+.contact-info-block p strong {
+    color: var(--primary-color);
+}
+
+.contact-info-block a {
+    font-weight: 600;
+}
+
+.map-container {
+    overflow: hidden;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    position: relative;
+    height: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-top: 40px;
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* --- PRODUCTS PAGE SPECIFIC STYLING --- */
+.page-title-section {
+    background-color: var(--light-bg);
+    padding: 120px 0 60px; /* Padding atas lebih besar karena header fixed */
+    text-align: center;
+}
+
+.page-title-section h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.page-title-section p {
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+.products-grid-section {
+    padding: 80px 0;
+    /* Background khusus untuk halaman produk */
+    background-image: url('images/hero-bg2.jpg'); /* Pastikan gambar ini ada! */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: scroll; /* Background ikut scroll */
+    color: var(--white); /* Jika background gelap, teks keseluruhan section bisa putih */
+}
+
+/* Item produk di dalam products-grid-section */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px; /* Jarak antar produk lebih besar */
+}
+
+.product-item {
+    background-color: rgba(255, 255, 255, 0.9); /* Background semi-transparan untuk kotak produk agar terbaca */
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-item .product-info {
+    padding: 20px;
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-item h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--primary-color); /* Warna judul produk tetap */
+    font-size: 1.6em;
+    text-align: left;
+}
+
+.product-item .product-description {
+    font-size: 0.95em;
+    color: #555; /* Warna deskripsi produk */
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.product-item .product-price {
+    font-weight: 700;
+    color: var(--accent-color);
+    font-size: 1.4em; /* Harga sedikit lebih besar */
+    margin-bottom: 15px;
+}
+
+.product-item .button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--dark-footer); /* Warna footer lebih gelap */
+    color: var(--secondary-color);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 80px; /* Jarak dari section terakhir */
+    font-size: 0.9em;
+}
+
+/* --- WhatsApp Floating Button --- */
+.whatsapp-float {
+    position: fixed;
+    width: 55px; /* Sedikit lebih besar */
+    height: 55px; /* Sedikit lebih besar */
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366; /* Warna hijau WhatsApp */
+    color: var(--white);
+    border-radius: 50%; /* Membuat tombol bulat */
+    text-align: center;
+    font-size: 28px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    z-index: 999; /* Pastikan di atas semua elemen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) translateY(-5px); /* Efek sedikit membesar dan naik */
+    box-shadow: 3px 3px 12px rgba(0,0,0,0.4);
+}
+
+.whatsapp-float img {
+    width: 32px; /* Ukuran ikon di dalam tombol */
+    height: 32px;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.3)); /* Sedikit bayangan untuk ikon */
+}
+
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Mobile First Approach: Default adalah untuk mobile */
+/* Kemudian atur untuk layar yang lebih besar */
+
+/* Tablet & Mobile (Max-width 768px) */
+@media (max-width: 768px) {
+    body {
+        padding-top: 80px; /* Sesuaikan padding-top untuk mobile header */
+    }
+
+    /* Ukuran teks dan elemen umum di mobile */
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    h2 { font-size: 1.5em; margin-bottom: 20px; }
+    h3 { font-size: 1.3em; margin-bottom: 20px; }
+    p { font-size: 0.95em; }
+    .button { padding: 10px 20px; font-size: 0.9em; }
+
+    .container {
+        width: 90%; /* Kontainer tetap 90% di mobile */
+    }
+
+    /* Header di mobile */
+    header {
+        padding: 15px 0; /* Padding header lebih kecil di mobile */
+    }
+
+    header .container {
+        flex-direction: row; /* TETAP BARIS: Logo saja yang terlihat */
+        justify-content: center; /* Pusatkan logo */
+    }
+
+    .logo img {
+        height: 45px; /* Logo lebih kecil di mobile */
+    }
+
+    /* Sembunyikan navigasi di mobile */
+    nav {
+        display: none; /* Sembunyikan seluruh elemen nav di mobile */
+    }
+
+    /* Hero Section Mobile */
+    .hero-section {
+        height: 80vh; /* Lebih pendek di mobile */
+        padding-top: 0; /* padding-top sudah di body */
+    }
+    .hero-section h1 { font-size: 2.8em; }
+    .hero-section h2 { font-size: 1.5em; }
+    .hero-section p { font-size: 1em; max-width: 90%; }
+
+    section { padding: 40px 0; }
+
+    .contact-grid, .product-grid {
+        grid-template-columns: 1fr; /* Satu kolom di mobile */
+        gap: 30px; /* Jarak antar item */
+    }
+
+    .map-container {
+        padding-bottom: 75%; /* Rasio 4:3 untuk peta di mobile */
+    }
+
+    .page-title-section {
+        padding: 90px 0 30px; /* Padding title page di mobile */
+    }
+    .product-item img {
+        height: 180px; /* Tinggi gambar produk lebih kecil */
+    }
+
+    /* WhatsApp button di mobile */
+    .whatsapp-float {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .whatsapp-float img {
+        width: 25px;
+        height: 25px;
+    }
+}
