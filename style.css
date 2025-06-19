@@ -485,84 +485,611 @@ footer {
     filter: drop-shadow(0 0 2px rgba(0,0,0,0.3)); /* Sedikit bayangan untuk ikon */
 }
 
+/* -- Root Variables -- */
+:root {
+    --primary-color: #4CAF50; /* Green */
+    --primary-color-dark: #388E3C; /* Darker Green */
+    --secondary-color: #FFC107; /* Amber/Yellow */
+    --text-color: #333333;
+    --light-text-color: #666666;
+    --white: #ffffff;
+    --light-bg: #f9f9f9; /* Light background for sections/cards */
+    --border-color: #e0e0e0; /* Light grey for borders */
+    --shadow-color: rgba(0,0,0,0.1); /* Subtle shadow */
+}
 
-/* --- RESPONSIVE DESIGN --- */
+/* -- Global Styles -- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* Mobile First Approach: Default adalah untuk mobile */
-/* Kemudian atur untuk layar yang lebih besar */
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+}
 
-/* Tablet & Mobile (Max-width 768px) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color-dark);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-2px);
+}
+
+section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+/* -- Header -- */
+header {
+    background-color: var(--white);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo img {
+    height: 50px;
+    transition: height 0.3s ease;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+header nav ul li a {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.05em;
+    padding: 5px 0;
+    position: relative;
+}
+
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    left: 50%;
+    bottom: -5px;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+header nav ul li a:hover::after,
+header nav ul li a.active::after {
+    width: 100%;
+}
+
+/* Specific header states for scroll */
+.transparent-header {
+    background-color: rgba(255, 255, 255, 0); /* Truly transparent */
+    box-shadow: none;
+    padding: 20px 0; /* More padding when transparent */
+}
+
+.transparent-header .logo img {
+    height: 60px; /* Larger logo when transparent */
+}
+
+.solid-header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 15px 0;
+}
+
+.solid-header .logo img {
+    height: 50px;
+}
+
+
+/* -- Hero Section (Homepage Only) -- */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-bg.jpg') no-repeat center center/cover;
+    color: var(--white);
+    text-align: center;
+    padding: 150px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    color: var(--white);
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* -- About Us Section -- */
+.about-us-section {
+    background-color: var(--white);
+    padding: 80px 0;
+}
+
+.about-us-section h2 {
+    font-size: 2.8em;
+    margin-bottom: 30px;
+    color: var(--primary-color-dark);
+}
+
+.about-us-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-us-text {
+    flex: 1;
+}
+
+.about-us-text p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: var(--light-text-color);
+}
+
+.about-us-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-us-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+/* -- Services Section -- */
+.services-section {
+    background-color: var(--light-bg);
+}
+
+.services-section h2 {
+    font-size: 2.8em;
+    margin-bottom: 40px;
+    color: var(--primary-color-dark);
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.service-item img {
+    height: 80px; /* Adjust as needed */
+    margin: 0 auto 20px;
+}
+
+.service-item h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.service-item p {
+    color: var(--light-text-color);
+}
+
+/* -- Contact Us Section -- */
+.contact-us-section {
+    background-color: var(--white);
+    padding: 80px 0;
+}
+
+.contact-us-section h2 {
+    font-size: 2.8em;
+    margin-bottom: 30px;
+    color: var(--primary-color-dark);
+}
+
+.contact-info {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    font-size: 1.1em;
+}
+
+.contact-item {
+    flex: 1 1 calc(33.33% - 60px); /* Adjust for 3 columns on desktop */
+    min-width: 250px;
+    background-color: var(--light-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.contact-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-item h3 img {
+    height: 30px; /* Adjust icon size */
+    margin-bottom: 0;
+}
+
+.contact-item p {
+    color: var(--light-text-color);
+}
+
+
+/* -- Products Page -- */
+.page-title-section {
+    background-color: var(--primary-color-dark);
+    color: var(--white);
+    padding: 120px 0 60px; /* Adjusted padding for fixed header */
+    text-align: center;
+}
+
+.page-title-section h1 {
+    font-size: 3em;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.page-title-section p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.products-grid-section {
+    background-color: var(--light-bg);
+    padding: 60px 0;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.product-item {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.product-item img {
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.product-item h3 {
+    font-size: 1.7em;
+    color: var(--primary-color-dark);
+    margin-bottom: 10px;
+}
+
+.product-item .product-description {
+    font-size: 0.95em;
+    color: var(--light-text-color);
+    margin-bottom: 15px;
+}
+
+.product-item .product-price {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.product-item .button {
+    width: 100%;
+    font-size: 1.1em;
+}
+
+/* -- Footer -- */
+footer {
+    background-color: var(--primary-color-dark);
+    color: var(--white);
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+/* -- WhatsApp Floating Button -- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25D366;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 35px;
+    height: 35px;
+}
+
+
+/* --- Styling Khusus Halaman Formulir Pemesanan (order-form.html) - Profesional & Minimalis (Revisi Ornamen) --- */
+/* Section Pembungkus Form */
+.order-page-section {
+    padding: 120px 0 80px; /* Sesuaikan padding agar tidak tertutup header */
+    background-color: var(--light-bg); /* Latar belakang lembut */
+    min-height: calc(100vh - 250px); /* Pastikan cukup tinggi */
+    display: flex;
+    align-items: center; /* Pusatkan vertikal */
+    justify-content: center; /* Pusatkan horizontal */
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+}
+
+/* Container Utama Form */
+.order-form-container {
+    background-color: var(--white); /* Latar belakang putih bersih */
+    padding: 40px; /* Padding dalam yang nyaman */
+    border-radius: 12px; /* Sudut lebih membulat untuk tampilan modern */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Bayangan lebih halus dan elegan */
+    width: 95%; /* Lebar responsif */
+    max-width: 550px; /* Lebar maksimal agar tidak terlalu lebar di layar besar */
+    text-align: center; /* Teks di tengah */
+    border: 1px solid rgba(0,0,0,0.08); /* Border sedikit lebih terlihat */
+    position: relative; /* Untuk positioning elemen lain di dalamnya */
+    overflow: hidden; /* Pastikan tidak ada yang meluap */
+
+    /* Ornamen Tambahan: Sudut Aksen / Pseudo-element */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* Garis di bagian atas */
+        height: 5px; /* Ketebalan garis */
+        background: linear-gradient(to right, var(--primary-color-dark), var(--primary-color)); /* Gradien warna utama */
+        border-top-left-radius: 11px; /* Mengikuti radius container */
+        border-top-right-radius: 11px; /* Mengikuti radius container */
+        z-index: 1; /* Pastikan di atas konten lain jika ada */
+    }
+}
+
+/* Judul Formulir */
+.order-form-container h1 {
+    color: var(--primary-color); /* Warna utama */
+    margin-bottom: 30px; /* Jarak bawah yang lebih lega */
+    font-size: 2.2em; /* Ukuran font sedikit lebih besar */
+    font-weight: 700; /* Lebih tebal */
+    letter-spacing: -0.5px; /* Sedikit spasi antar huruf untuk keterbacaan */
+    line-height: 1.2;
+    position: relative; /* Untuk ornamen di bawah judul */
+    padding-bottom: 15px; /* Ruang untuk garis bawah */
+}
+
+/* Ornamen Tambahan: Garis Bawah di Judul */
+.order-form-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Pusatkan garis */
+    transform: translateX(-50%); /* Pusatkan garis */
+    width: 60px; /* Panjang garis */
+    height: 3px; /* Ketebalan garis */
+    background-color: var(--primary-color); /* Warna garis */
+    border-radius: 2px; /* Sedikit membulat */
+    opacity: 0.7; /* Sedikit transparan */
+}
+
+/* Grouping Field Form */
+.order-form-container .form-group {
+    margin-bottom: 25px; /* Jarak antar group yang konsisten */
+    text-align: left; /* Teks rata kiri untuk label dan input */
+}
+
+/* Label Field Form */
+.order-form-container .form-group label {
+    display: block; /* Pastikan label di baris sendiri */
+    margin-bottom: 8px; /* Jarak antara label dan input */
+    font-weight: 600; /* Lebih tebal dari teks biasa */
+    color: var(--text-color); /* Warna teks utama */
+    font-size: 0.95em; /* Ukuran font sedikit lebih kecil dari input */
+    opacity: 0.85; /* Sedikit transparan untuk kesan lembut */
+}
+
+/* Input Fields (Text, Tel, Number) */
+.order-form-container .form-group input[type="text"],
+.order-form-container .form-group input[type="tel"],
+.order-form-container .form-group input[type="number"] {
+    width: 100%; /* Lebar penuh */
+    padding: 14px 15px; /* Padding yang nyaman */
+    border: 1px solid var(--border-color); /* Border standar */
+    border-radius: 8px; /* Sudut lebih membulat */
+    font-size: 1em; /* Ukuran font yang pas */
+    color: var(--text-color); /* Warna teks input */
+    background-color: var(--white); /* Latar belakang input putih */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transisi halus */
+    box-sizing: border-box; /* Penting agar padding tidak menambah lebar input */
+}
+
+/* Efek Fokus pada Input */
+.order-form-container .form-group input:focus {
+    border-color: var(--primary-color); /* Border warna utama saat fokus */
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2); /* Glow halus warna primary */
+    outline: none; /* Hilangkan outline default browser */
+    background-color: #f8fff8; /* Sedikit warna hijau muda saat fokus */
+}
+
+/* Styling untuk Input Readonly (Produk & Harga) */
+.order-form-container input[readonly] {
+    background-color: var(--light-bg); /* Latar belakang abu-abu muda */
+    border-color: rgba(0,0,0,0.08); /* Border lebih lembut */
+    cursor: not-allowed; /* Kursor menunjukkan tidak bisa diedit */
+    opacity: 0.9;
+    font-weight: 600; /* Teks lebih tebal untuk nilai readonly */
+    color: var(--primary-color-dark); /* Warna teks lebih gelap agar jelas */
+}
+
+/* Tombol Submit */
+.order-form-container .button {
+    width: 100%; /* Lebar penuh */
+    margin-top: 30px; /* Jarak atas yang lebih lega */
+    padding: 16px; /* Padding yang lebih besar untuk area klik */
+    font-size: 1.15em; /* Ukuran font lebih besar */
+    font-weight: 700; /* Lebih tebal */
+    border-radius: 8px; /* Sudut membulat */
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    body {
-        padding-top: 80px; /* Sesuaikan padding-top untuk mobile header */
+    .order-page-section {
+        padding: 80px 0 50px;
     }
-
-    /* Ukuran teks dan elemen umum di mobile */
-    h1 { font-size: 2.5em; margin-bottom: 10px; }
-    h2 { font-size: 1.5em; margin-bottom: 20px; }
-    h3 { font-size: 1.3em; margin-bottom: 20px; }
-    p { font-size: 0.95em; }
-    .button { padding: 10px 20px; font-size: 0.9em; }
-
-    .container {
-        width: 90%; /* Kontainer tetap 90% di mobile */
+    .order-form-container {
+        padding: 30px;
+        border-radius: 8px;
     }
-
-    /* Header di mobile */
-    header {
-        padding: 15px 0; /* Padding header lebih kecil di mobile */
+    .order-form-container h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        padding-bottom: 10px; /* Sesuaikan padding untuk garis bawah judul */
     }
-
-    header .container {
-        flex-direction: row; /* TETAP BARIS: Logo saja yang terlihat */
-        justify-content: center; /* Pusatkan logo */
+    .order-form-container h1::after {
+        width: 50px; /* Sesuaikan panjang garis di responsif */
+        height: 2px; /* Sesuaikan ketebalan garis */
     }
-
-    .logo img {
-        height: 45px; /* Logo lebih kecil di mobile */
+    .order-form-container .form-group {
+        margin-bottom: 20px;
     }
-
-    /* Sembunyikan navigasi di mobile */
-    nav {
-        display: none; /* Sembunyikan seluruh elemen nav di mobile */
+    .order-form-container .form-group input {
+        padding: 12px;
     }
-
-    /* Hero Section Mobile */
-    .hero-section {
-        height: 80vh; /* Lebih pendek di mobile */
-        padding-top: 0; /* padding-top sudah di body */
+    .order-form-container .button {
+        padding: 14px;
+        font-size: 1.05em;
+        margin-top: 25px;
     }
-    .hero-section h1 { font-size: 2.8em; }
-    .hero-section h2 { font-size: 1.5em; }
-    .hero-section p { font-size: 1em; max-width: 90%; }
+}
 
-    section { padding: 40px 0; }
-
-    .contact-grid, .product-grid {
-        grid-template-columns: 1fr; /* Satu kolom di mobile */
-        gap: 30px; /* Jarak antar item */
+@media (max-width: 480px) {
+    .order-form-container {
+        padding: 20px;
     }
-
-    .map-container {
-        padding-bottom: 75%; /* Rasio 4:3 untuk peta di mobile */
+    .order-form-container h1 {
+        font-size: 1.8em;
     }
-
-    .page-title-section {
-        padding: 90px 0 30px; /* Padding title page di mobile */
+    .order-form-container .form-group input {
+        padding: 10px;
     }
-    .product-item img {
-        height: 180px; /* Tinggi gambar produk lebih kecil */
-    }
-
-    /* WhatsApp button di mobile */
-    .whatsapp-float {
-        width: 45px;
-        height: 45px;
-        bottom: 20px;
-        right: 20px;
-    }
-    .whatsapp-float img {
-        width: 25px;
-        height: 25px;
+    .order-form-container .button {
+        padding: 12px;
+        font-size: 1em;
     }
 }
